@@ -1,5 +1,5 @@
 #postgres un
-username = "USERNAME HERE"
+username = "USERNAME"
 
 # postgres pw
-password = "PASSWORD HERE"
+password = "PASSWORD"
