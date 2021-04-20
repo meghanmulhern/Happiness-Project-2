@@ -9,7 +9,7 @@ CREATE TABLE country (
 );
 
 CREATE TABLE happiness_data (
-	"id" SERIAL UNIQUE PRIMARY KEY, 
+	"happy_id" SERIAL UNIQUE PRIMARY KEY, 
     "year" VARCHAR   NOT NULL,
     "country_id" INT,
     "happiness_score" FLOAT   NOT NULL,
