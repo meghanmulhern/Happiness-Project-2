@@ -6,11 +6,13 @@ from flask_cors import CORS
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
+from sqlalchemy import create_engine, func
 
 # Flask Setup
 #################################################
 app = Flask(__name__)
 CORS(app)
+engine = create_engine("sqlite:///happiness_db.sqlite")
 
 
 #################################################
@@ -152,7 +154,9 @@ def happiness():
     happiness_df = pd.read_sql('SELECT * FROM happiness_data', engine)
     countries_df = pd.read_sql('SELECT * FROM country', engine)
     joined_df = pd.merge(happiness_df, countries_df, on = "country_id")
-
+    print(len(joined_df))
+    print(len(happiness_df))
+    print(len(countries_df))
 
     # session.close()
     return Response(joined_df.to_json(orient = "records"),mimetype="application/json")
