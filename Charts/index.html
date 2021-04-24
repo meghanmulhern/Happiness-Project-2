@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 
 
-<div id="my_dataviz">
+<!-- <div id="my_dataviz"> -->
 <head>
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -15,20 +15,31 @@
 
 
   </head>
-  <body>
+  <!-- <body>
 <div id="plot"></div>
     <script src="geochart.js"></script>
     <script src="bar-plotly-2.js"></script>
   </div>
   </body>
-</html>
+</html> -->
 
 
-<body>
+<!-- <body>
   <div id="bar-plot">
-  <script src="bar-plotly-2.js"></script></div>
+  <script src="bar-plotly-2.js"></script></div> -->
 
-  <div id = "regions_div">
+  <div id="regions_div" style="width: 900px; height: 500px;"></div>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <div><input type="radio" name="region" id="all" value="all" /><label for="all">All</label></div>
+  <div><input type="radio" name="region" id="africa" value="002" /><label for="africa">Africa</label></div>
+  <div><input type="radio" name="region" id="asia" value="142" /><label for="asia">Asia</label></div>
+  <div><input type="radio" name="region" id="northern" value="021" /><label for="northern">Northern America</label></div>
+  <div><input type="radio" name="region" id="southern" value="005" /><label for="southern">Southern America</label></div>
+  <div><input type="radio" name="region" id="oceania" value="009" /><label for="ocenaia">Oceania</label></div>
+  <div><input type="radio" name="region" id="europe" value="150" /><label for="europe">Europe</label></div>
+  <div id="regions_div"></div>
+    </label>
+  </form>
   <script src="geochart.js"></script></div>
 </body>
 </html>
