@@ -24,7 +24,7 @@ def welcome():
     """List all available api routes."""
     return (
         f"Available Routes:<br/>"
-        f"/api/v1.0/happiness_db<br/>"
+        f"/api/v1.0/happiness<br/>"
     )
 # @app.route("/")
 # def welcome():
@@ -75,11 +75,11 @@ def countries_data():
 #     return jsonify(country_data)
 
 
-    # return jsonify(country_names)
-@app.route("/api/v1.0/happiness_db/happiness_data")
-def happiness_func():
-    """Return the happiness_db data as json"""
-#     # return jsonify(country_names)
+    # return jsonify(country_names) OLD DO NOT USE
+# @app.route("/api/v1.0/happiness_db/happiness_data")
+# def happiness_func():
+#     """Return the happiness_db data as json"""
+# #     # return jsonify(country_names)
 # @app.route("/api/v1.0/happiness_db/happiness_data")
 # def happiness_func():
 #     """Return the happiness_db data as json"""
@@ -139,6 +139,8 @@ def happiness_func():
 #         f"Available Routes:<br/>"
 #         f"/api/v1.0/justice-league"
 #     )
+
+# THIS IS THE REAL ROUTEEEEEEE
 @app.route("/api/v1.0/happiness")
 def happiness(): 
     # session = Session(engine)

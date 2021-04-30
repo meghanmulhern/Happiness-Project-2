@@ -1,0 +1,40 @@
+/* NOTES:
+id gets (hashtag)
+class gets (.) */
+
+/* navbar details */
+
+.navbar-nav {
+    background-color: #008080;
+}
+
+/* bar chart fixing location of the dropdown */
+
+#selDataset {
+    margin:15;
+    position:sticky;
+    display:contents;
+	float: right;
+	top: 10.7%;
+	margin-left: 10px;
+}
+
+/* map alignment */
+
+/* 
+.jumbotron {
+    position: center;
+    left: 10px;
+    top: 10px;
+    width: 100%;
+    height: 100%;
+} */
+
+/* radio buttons */
+ .radio_buttons{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}

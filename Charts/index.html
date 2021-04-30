@@ -1,51 +1,281 @@
-
-<html>
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html>
 
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- <div id="my_dataviz"> -->
-<head>
-  <script src="https://d3js.org/d3.v4.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+            integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
+        <link rel="stylesheet" href="/static/css/style.css" media="screen">
+        <title>Pursuit of Happiness</title>
 
-  </head>
-  <!-- <body>
-<div id="plot"></div>
-    <script src="geochart.js"></script>
-    <script src="bar-plotly-2.js"></script>
-  </div>
-  </body>
-</html> -->
+        <script src="https://d3js.org/d3.v4.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
 
+<!-- beginning of Code for the slideshow -->
+        <style>
+            * {
+                box-sizing: border-box
+            }
 
-<body>
-  <div id="bar-plot"></div>
-  <select id="selDataset">
-    <option value="Happiness Score">Happiness Score</option>
-    <option value="GDP">GDP</option>
-    <option value="Trust Score">Trust Score</option>
-  </select>
+            body {
+                font-family: Verdana, sans-serif;
+                margin: 0
+            }
 
-  <script src="bar-plotly-2.js"></script></div>
+            .mySlides {
+                display: none
+            }
 
-  <div id="regions_div" style="width: 900px; height: 500px;"></div>
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <div><input type="radio" name="region" id="all" value="all" /><label for="all">All</label></div>
-  <div><input type="radio" name="region" id="africa" value="002" /><label for="africa">Africa</label></div>
-  <div><input type="radio" name="region" id="asia" value="142" /><label for="asia">Asia</label></div>
-  <div><input type="radio" name="region" id="northern" value="021" /><label for="northern">Northern America</label></div>
-  <div><input type="radio" name="region" id="southern" value="005" /><label for="southern">Southern America</label></div>
-  <div><input type="radio" name="region" id="oceania" value="009" /><label for="ocenaia">Oceania</label></div>
-  <div><input type="radio" name="region" id="europe" value="150" /><label for="europe">Europe</label></div>
-  <div id="regions_div"></div>
-    </label>
-  </form>
-  <script src="geochart.js"></script></div>
-</body>
+            img {
+                vertical-align: middle;
+            }
+
+            /* Slideshow container */
+            .slideshow_container {
+                max-width: 1000px;
+                position: fixed;
+                margin: auto;
+            }
+
+            /* Next & previous buttons */
+            .prev,
+            .next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                width: auto;
+                padding: 16px;
+                margin-top: -22px;
+                color: white;
+                font-weight: bold;
+                font-size: 18px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+                user-select: none;
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            /* Position the "next button" to the right */
+            .next {
+                right: 0;
+                border-radius: 3px 0 0 3px;
+            }
+
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover,
+            .next:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            /* Caption text */
+            .text {
+                color: #f2f2f2;
+                font-size: 15px;
+                padding: 8px 12px;
+                position: absolute;
+                bottom: 8px;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Number text (1/3 etc) */
+            .numbertext {
+                color: #f2f2f2;
+                font-size: 12px;
+                padding: 8px 12px;
+                position: absolute;
+                top: 0;
+            }
+
+            /* The dots/bullets/indicators */
+            .dot {
+                cursor: pointer;
+                height: 15px;
+                width: 15px;
+                margin: 0 2px;
+                background-color: #bbb;
+                border-radius: 50%;
+                display: inline-block;
+                transition: background-color 0.6s ease;
+            }
+
+            .active,
+            .dot:hover {
+                background-color: #717171;
+            }
+
+            /* Fading animation */
+            /* .fade {
+                -webkit-animation-name: fade;
+                -webkit-animation-duration: 1.5s;
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+
+            @-webkit-keyframes fade {
+                from {
+                    opacity: .4
+                }
+
+                to {
+                    opacity: 1
+                }
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: .4
+                }
+
+                to {
+                    opacity: 1
+                }
+            } */
+
+            /* On smaller screens, decrease text size */
+            @media only screen and (max-width: 300px) {
+
+                .prev,
+                .next,
+                .text {
+                    font-size: 11px
+                }
+            }
+        </style>
+<!-- end of Code for the slideshow -->
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html" id="logo"> The Pursuit of Happiness</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- justify-content-end to aligh the navbar items to the right -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Visualizations
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="bar_chart.html">Bar Chart</a>
+                            <br>
+                            <a href="map.html">World Map</a>
+                            <br>
+                    
+                        </div>
+                    </li>
+                    <!-- <li class="nav-item active">
+                        <a class="nav-link" href="comparison.html">Comparison</span></a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" <a href="https://worldhappiness.report" target="_blank">Happiness Report</a></a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <p></p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="slideshow_container">
+                        <div class="mySlides">
+                            <div class="Cover">1</div>
+                            <img src="../images/cover.jpeg" style="width:1000px;height:500px;">
+                            <div class="text"> </div>
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="re-introduce">2</div>
+                            <img src="../images/intro.jpeg" style="width:1000px;height:500px;">
+                            <div class="text"></div>
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="changes">3</div>
+                            <img src="../images/change.jpeg" style="width:1000px;height:500px;">
+                            <div class="text"></div>
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="viz_1">4</div>
+                            <img src="../images/viz1.jpeg" style="width:1000px;height:500px;">
+                            <div class="text"></div>
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="viz_1">5</div>
+                            <img src="../images/viz2.jpeg" style="width:1000px;height:500px;">
+                            <div class="text"></div>
+                        </div>
+
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                    </div>
+                    <br>
+
+                    <div style="text-align:center">
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+
+    </body>
+
 </html>

@@ -34,9 +34,9 @@ function drawRegionsMap() {
         return [x.country, x.happiness_score]})
   var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
   var options = {
-    colorAxis: {colors: ['#FDE4FF', '#AC06B9']},
-    backgroundColor: '#CFEDFF',
-    datalessRegionColor: '#D8D8D8',
+    colorAxis: {colors: ['#d31463']},
+    backgroundColor: '#0A284B',
+    datalessRegionColor:'f7' ,
     defaultColor: '#f5f5f5',
   };
 
